@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Message } from '../models/message';
 
 @Component({
   selector: 'app-chat-formulaire',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatFormulaireComponent implements OnInit {
 
-  constructor() { }
+  @Output() nouveauMessage: EventEmitter<Message>;
+
+  public texte: string;
+  
+
+  constructor() { 
+    this.nouveauMessage = new EventEmitter<Message>();
+    this.texte = '';
+  }
 
   ngOnInit() {
+  }
+
+  public envoyer(): void {
+    const message = new Message();
+    message.auteur = 'toto';
+    message.date = new Date();
+    message.texte = this.texte;
+    this.nouveauMessage.emit(message);
   }
 
 }

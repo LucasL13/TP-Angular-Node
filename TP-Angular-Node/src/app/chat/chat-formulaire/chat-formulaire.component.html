@@ -1,3 +1,16 @@
-<p>
-  chat-formulaire works!
-</p>
+<!-- <div class="row">
+<label>Votre message:</label>
+<input type="text" name="message" [(ngModel)]="texte">
+<button type="submit" class="btn btn-primary" (click)="envoyer()"> Envoyer</button>
+</div> -->
+
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Envoyer un message : </label>
+      <div class="row">
+        <div class="col-10"> <input type="text" class="form-control" name="message" [(ngModel)]="texte"> </div>
+        <div class="col-2">  <button type="submit" class="btn btn-primary btn-block" (click)="envoyer()">Envoyer</button>        </div>
+      </div>
+    </div>
+</form>
+<br>

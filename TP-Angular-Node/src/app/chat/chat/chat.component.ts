@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Message } from '../models/message';
+import { Observable } from 'rxjs'
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,28 +10,18 @@ import { Message } from '../models/message';
 })
 export class ChatComponent implements OnInit {
 
-  public messages: Array<Message>;
+  public messages: Observable<Array<Message>>;
 
-  constructor(private http: HttpClient) { 
-    this.messages = new Array<Message>();
+  constructor(private chatService: ChatService) { 
   }
 
   ngOnInit() {
-    this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts')
-      .subscribe(
-        (results) => {
-          if (results != null) {
-            for (const result of results) {
-              result.date = new Date();
-              const message = new Message(result);
-              this.messages.push(message);
-            }
-          console.log(this.messages);
-        }
-    }) ;
-    const arr = new Array<Message>();
-    arr.push(...this.messages);
-    this.messages = arr;
+    this.messages = this.chatService.getMessages();    
   }
+
+  public gererNouveauMessage(message: Message): void {
+    this.messages = this.chatService.addMessage(message);
+  }
+   
 
 }
