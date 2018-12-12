@@ -13,3 +13,6 @@ Webapp réalisé dans le cadre du TP Architecture des Applications.
  - [x] [Front-end] Serveur Angular + Bootstrap
  - [ ] [Back-end] Serveur API NodeJS
 
+## Ressources 
+
+Mock API Used : https://jsonplaceholder.typicode.com/posts
