@@ -1,0 +1,17 @@
+<!-- Creation d'un tableau de messages à partir d'une Array de Message -->
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let message of messages"> 
+        <th scope="row">{{message.date | date: 'dd/MM/yyyy HH:mm:ss'}}</th>
+        <td>{{message.auteur}}</td>
+        <td>{{message.texte}}</td>
+    </tr>
+    </tbody>
+</table>

@@ -11,6 +11,7 @@ import { ChatService } from '../services/chat.service';
 export class ChatComponent implements OnInit {
 
   public messages: Observable<Array<Message>>;
+  public displayMode: number;
 
   constructor(private chatService: ChatService) { 
   }
@@ -19,8 +20,16 @@ export class ChatComponent implements OnInit {
     this.messages = this.chatService.getMessages();    
   }
 
+  // Receptionner et transmettre au service concerné un message ajouté par l'utilisateur
   public gererNouveauMessage(message: Message): void {
     this.messages = this.chatService.addMessage(message);
+  }
+
+  // Changer le mode d'affichage des messages. 
+  // Voir chat-formulaire pour le changement d'entrée
+  // Voir chat-affichage pour les recupercusions HTML
+  public gererDisplayMode(dpMode: number): void{
+    this.displayMode = dpMode;
   }
    
 

@@ -10,11 +10,15 @@ import { Message } from '../models/message';
 export class ChatAffichageComponent implements OnInit {
 
   @Input() messages: Array<Message>;
+  @Input() displayMode: number;
+
+  DispMode_LIST: number = 1;
+  DispMode_TABLE: number = 2;
+  DispMode_GRID: number = 3;
 
   constructor() { }
 
   ngOnInit() {
-    //this.messages = new Array<Message>();
   }
 
 }

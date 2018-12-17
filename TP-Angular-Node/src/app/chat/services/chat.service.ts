@@ -18,7 +18,8 @@ export class ChatService {
     const messages = [];
     if (resultats != null) {
       for (const result of resultats) {
-        const message = new Message(result);
+          console.log("Date : " + result.date);
+          const message = new Message(result);
         messages.push(message);
       }
     }
@@ -40,7 +41,7 @@ export class ChatService {
   }
 
     public addMessage(message: Message): Observable<Array<Message>> {
-      this.messages.push(message);
+      this.messages.unshift(message);
       return of(this.messages);
     }
      

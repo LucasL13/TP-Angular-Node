@@ -6,6 +6,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatAffichageComponent } from './chat-affichage/chat-affichage.component';
 import { ChatElementComponent } from './chat-element/chat-element.component';
 import { ChatFormulaireComponent } from './chat-formulaire/chat-formulaire.component';
+import { ChatTabledisplayComponent } from './chat-tabledisplay/chat-tabledisplay.component';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { ChatFormulaireComponent } from './chat-formulaire/chat-formulaire.compo
         ChatAffichageComponent,
         ChatElementComponent,
         ChatFormulaireComponent,
+        ChatTabledisplayComponent,
     ],
     exports: [
         ChatComponent

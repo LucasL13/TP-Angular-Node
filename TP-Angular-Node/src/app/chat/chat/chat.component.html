@@ -1,7 +1,9 @@
+<!-- NB : Recuperation de la valeur actuelle du "displayMode" (type d'affichage, voir chat-formulaire) -->
 <div class="container" id="formulaire">
-  <app-chat-formulaire (nouveauMessage)="gererNouveauMessage($event)"></app-chat-formulaire>
+  <app-chat-formulaire (nouveauMessage)="gererNouveauMessage($event)" (displaymode)="gererDisplayMode($event)"></app-chat-formulaire>
 </div>
 
+<!-- NB(re) : Renvoi de la valeur du displayMode a l'element concerné (l'afficheur des messages) -->
 <div id="chat">
-  <app-chat-affichage [messages]="messages | async"></app-chat-affichage>
+  <app-chat-affichage [messages]="messages | async" [displayMode]="displayMode"></app-chat-affichage>
 </div>

@@ -1,16 +1,46 @@
-<!-- <div class="row">
-<label>Votre message:</label>
-<input type="text" name="message" [(ngModel)]="texte">
-<button type="submit" class="btn btn-primary" (click)="envoyer()"> Envoyer</button>
-</div> -->
+<!-- Bandeau qui apparait en haut pour informer/confirmer l'envoi d'un message -->
+<!-- NB : Disparait automatiquement au bout de 3 secondes -->
+<div *ngIf="displayAlert" class="alert alert-primary" role="alert">
+    Votre message a bien été ajouté. Merci !
+</div>
 
 <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Envoyer un message : </label>
-      <div class="row">
-        <div class="col-10"> <input type="text" class="form-control" name="message" [(ngModel)]="texte"> </div>
-        <div class="col-2">  <button type="submit" class="btn btn-primary btn-block" (click)="envoyer()">Envoyer</button>        </div>
+  <div class="form-group">
+
+    <div class="row">
+      <!-- Choix du nom d'utilisateur pour l'envoi d'un message -->
+      <div class="col-6"><div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Choisir un nom d'utilisateur</span>
+          </div>
+          <input type="text" class="form-control" placeholder="nom utilisateur" name="username" [(ngModel)]="username">
+        </div>
+      </div>
+
+      <!-- Choix du type d'affichage (Liste | Grille | Tableau) des messages -->
+      <div class="col-6">
+        <div class="row">
+        <div class="col-1" (click)="changeDisplayMode(DispMode_LIST)"> 
+            <i class="fas fa-bars fa-2x icon-hover {{displayMode == DispMode_LIST ? 'color-selected' : 'color-unselected'}}"></i> 
+          </div>  
+          <div class="col-1" (click)="changeDisplayMode(DispMode_TABLE)">  
+              <i class="fas fa-table fa-2x icon-hover {{displayMode == DispMode_TABLE ? 'color-selected' : 'color-unselected'}}"></i> 
+          </div>
+          <div class="col-1" (click)="changeDisplayMode(DispMode_GRID)">  
+              <i class="fas fa-columns fa-2x icon-hover {{displayMode == DispMode_GRID ? 'color-selected' : 'color-unselected'}}"></i> 
+          </div>
+        </div> 
+    </div>
+    </div>
+
+    <!-- Input pour l'envoi d'un message -->
+    <label for="exampleInputEmail1">Envoyer un message : </label>
+    <div class="row">
+      <div class="col-10"> <input type="text" class="form-control" name="message" [(ngModel)]="texte"> </div>
+      <div class="col-2"> <button type="submit" class="btn btn-primary btn-block" (click)="envoyer()">Envoyer</button>
       </div>
     </div>
+
+  </div>
 </form>
 <br>

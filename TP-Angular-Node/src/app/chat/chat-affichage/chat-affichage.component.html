@@ -1,7 +1,23 @@
 <div class="container">
-<div class="row">
-    <div class="col-3" *ngFor="let message of messages">
-        <app-chat-element [message]="message"></app-chat-element>
+
+    <!-- Affichage des messages en mode liste (un message = une ligne) -->
+    <div *ngIf="displayMode == DispMode_GRID" class="row">
+        <div  class="col-3" *ngFor="let message of messages">
+            <app-chat-element [message]="message"></app-chat-element>
+        </div>
     </div>
-  </div>
+
+    <!-- Affichage des messages en mode grille (plusieurs messages sur une même ligne) -->
+    <div *ngIf="displayMode == DispMode_LIST" class="row">
+            <div class="col-12" *ngFor="let message of messages">
+                <app-chat-element [message]="message"></app-chat-element>
+            </div>
+    </div>
+
+    <!-- Affichage des messages en mode tableau -->
+    <div *ngIf="displayMode == DispMode_TABLE" class="row">
+        <app-chat-tabledisplay [messages]="messages"></app-chat-tabledisplay>
+    </div>
+    
+
 </div>
