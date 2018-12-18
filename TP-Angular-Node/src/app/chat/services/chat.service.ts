@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Message } from "../models/message";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ChatService {
+
+  
 
   messages: Array<Message>;
 
@@ -28,7 +38,7 @@ export class ChatService {
 
   public getMessages(): Observable<Array<Message>> {
     return new Observable<Array<Message>>((observer) => {
-      this.http.get<Array<any>>('https://jsonplaceholder.typicode.com/posts')
+      this.http.get<Array<any>>('http://localhost:3000/getMessages')
       .subscribe(
         (messages) => {
         this.messages = this.buildMessages(messages);
@@ -41,8 +51,31 @@ export class ChatService {
   }
 
     public addMessage(message: Message): Observable<Array<Message>> {
-      this.messages.unshift(message);
-      return of(this.messages);
+      return new Observable<Array<Message>>((observer) => {
+          this.http.post<Array<any>>('http://localhost:3000/addMessage',
+          {title: message.auteur, body: message.texte, date: message.date}).subscribe(
+            (messages) => {
+            this.messages = this.buildMessages(messages);
+            observer.next(this.messages);
+            },
+            (error) => observer.error(error),
+            () => observer.complete()
+          );
+      });
+    }
+
+    public removeMessage(id:string): Observable<Array<Message>> {
+      return new Observable<Array<Message>>((observer) => {
+        this.http.post<Array<any>>('http://localhost:3000/removeMessage',
+       {id: id}).subscribe(
+          (messages) => {
+          this.messages = this.buildMessages(messages);
+          observer.next(this.messages);
+          },
+          (error) => observer.error(error),
+          () => observer.complete()
+        );
+      });
     }
      
    
